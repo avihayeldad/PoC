@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>IDE – Login</title>
+  <title>IDE - Login</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     :root { --bg:#0b1320; --panel:#111827; --muted:#9ca3af; --accent:#3b82f6; }
@@ -12,11 +12,6 @@
       background: radial-gradient(1200px 800px at 20% -10%, #132039, #0b1320 60%);
       color:#e5e7eb; min-height:100vh; display:flex; align-items:center; justify-content:center; padding:24px;
     }
-    .banner {
-      position:fixed; top:0; left:0; right:0;
-      background:#f59e0b; color:#111827; font-weight:600; text-align:center; padding:10px 14px;
-      box-shadow:0 2px 10px rgba(0,0,0,.25);
-    }
     .card {
       width:100%; max-width:420px; background:var(--panel);
       border:1px solid rgba(255,255,255,.06); border-radius:16px; padding:28px;
@@ -24,7 +19,7 @@
       backdrop-filter: blur(3px);
       animation: pop .28s ease-out;
     }
-    @keyframes pop { from { transform:scale(.98); opacity:.0 } to { transform:scale(1); opacity:1 } }
+    @keyframes pop { from { transform:scale(.98); opacity:0 } to { transform:scale(1); opacity:1 } }
     .logo {
       width:48px; height:48px; border-radius:12px; background:#1f2937;
       display:flex; align-items:center; justify-content:center; margin:0 auto 12px; font-weight:800;
@@ -34,23 +29,20 @@
     p.sub { margin:0 0 18px; text-align:center; color:var(--muted); font-size:13px; }
     label { display:block; font-size:12px; color:#cbd5e1; margin:10px 0 6px; }
     input {
-      width:100%; padding:12px 12px; border-radius:10px; border:1px solid #334155;
+      width:100%; padding:12px; border-radius:10px; border:1px solid #334155;
       background:#0f172a; color:#e5e7eb; outline:none;
     }
     input:focus { border-color:#3b82f6; box-shadow:0 0 0 3px rgba(59,130,246,.2); }
     .row { display:flex; gap:10px; align-items:center; justify-content:space-between; margin-top:10px; }
     .btn {
       width:100%; margin-top:16px; padding:12px 14px; border:0; border-radius:10px;
-      background:linear-gradient(135deg, #2563eb, #60a5fa); color:white; font-weight:700; cursor:pointer;
+      background:linear-gradient(135deg, #2563eb, #60a5fa); color:#fff; font-weight:700; cursor:pointer;
     }
     .muted { font-size:12px; color:#94a3b8; text-align:center; margin-top:10px; }
-    .legal { font-size:11px; color:#94a3b8; text-align:center; margin-top:14px; }
-    .footnote { margin-top:18px; font-size:12px; color:#a1a1aa; text-align:center; }
     .hidden { display:none; }
   </style>
 </head>
 <body>
-
   <div class="card" role="dialog" aria-labelledby="title" aria-describedby="desc">
     <div class="logo">IDE</div>
     <h1 id="title">Sign in</h1>
@@ -73,26 +65,27 @@
       <button class="btn" id="loginBtn" type="submit">Sign in</button>
       <div class="muted" id="status" aria-live="polite"></div>
     </form>
-
   </div>
 
   <script>
-    const form = document.getElementById('poc-form');
-    const status = document.getElementById('status');
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      status.textContent = 'Demo only – credentials were not sent anywhere.';
-      // Immediately wipe inputs to avoid storing anything in memory/DOM history
-      setTimeout(() => {
-        document.getElementById('u').value = '';
-        document.getElementById('p').value = '';
-      }, 150);
-    });
-
-    // Optional: close dialog on Esc (UX nicety)
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') document.querySelector('.card').classList.add('hidden');
-    });
+    (function(){
+      var form = document.getElementById('poc-form');
+      var status = document.getElementById('status');
+      form.addEventListener('submit', function(e){
+        e.preventDefault();
+        status.textContent = 'Demo only — no data sent.';
+        setTimeout(function(){
+          document.getElementById('u').value = '';
+          document.getElementById('p').value = '';
+        }, 150);
+      });
+      document.addEventListener('keydown', function(e){
+        if (e.key === 'Escape') {
+          var card = document.querySelector('.card');
+          if (card) card.classList.add('hidden');
+        }
+      });
+    })();
   </script>
 </body>
 </html>
