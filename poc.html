@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Security Test – Login PoC</title>
+  <title>IDE – Login</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     :root { --bg:#0b1320; --panel:#111827; --muted:#9ca3af; --accent:#3b82f6; }
@@ -59,7 +59,7 @@
 
     <form id="poc-form" autocomplete="off" novalidate>
       <label for="u">Username</label>
-      <input id="u" name="u" placeholder="name@example.com" inputmode="email" required>
+      <input id="u" name="u" placeholder="example@ide-tech.com" inputmode="email" required>
 
       <label for="p">Password</label>
       <input id="p" name="p" type="password" placeholder="••••••••" required>
@@ -73,14 +73,11 @@
 
       <button class="btn" id="loginBtn" type="submit">Sign in</button>
       <div class="muted" id="status" aria-live="polite"></div>
-      <div class="legal">No data is transmitted. Inputs are immediately discarded.</div>
     </form>
 
-    <div class="footnote">PoC only • For authorized testing environments</div>
   </div>
 
   <script>
-    // PoC safety: block any real submission or network exfiltration.
     const form = document.getElementById('poc-form');
     const status = document.getElementById('status');
     form.addEventListener('submit', (e) => {
