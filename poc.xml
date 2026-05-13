@@ -4,7 +4,6 @@
     <title>Exploit Feed</title>
     <item>
       <title><![CDATA[<img src=x onerror=alert(document.domain)>]]></title>
-      <link>https://elastic.co</link>
     </item>
   </channel>
 </rss>
